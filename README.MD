@@ -13,7 +13,7 @@ system.
 
 # TLDR
 
-[Sample project here]() using what's described below
+[Sample project here](https://github.com/L-Briand/raylib-zig-bindings-sample) using what's described below
 
 # Setting up a project
 
@@ -30,12 +30,14 @@ Create a `build.zig.zon` file and use this project as dependency.
 .{
     .name = "game",
     .version = "0.0.0",
+
     .dependencies = .{
         .@"raylib-zig-bindings" = .{
-            .url = "TODO",
-            .hash = "TODO",
+            .url = "https://github.com/L-Briand/raylib-zig-bindings/releases/download/0.0.1/release.tar.gz",
+            .hash = "1220aea55046536f9d140db95ab07ce0ff8e69927aca1e15250dc7ba7fd1017ac078",
         }
     },
+
     .paths = .{
         "",
     },
