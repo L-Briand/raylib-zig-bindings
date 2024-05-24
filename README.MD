@@ -1,15 +1,16 @@
 # Raylib Zig Bindings
 
-One to one translation of [raylib](https://github.com/raysan5/raylib)
-and [raygui](https://github.com/raysan5/raygui) `.h` files in zig **and** build tools to compile raylib from source.
+1. One to one translation of
+   [raylib.h](https://github.com/raysan5/raylib/blob/master/src/raylib.h),
+   [rlgl.h](https://github.com/raysan5/raylib/blob/master/src/rlgl.h),
+   [rcamera.h](https://github.com/raysan5/raylib/blob/master/src/rcamera.h) and
+   [raygui.h](https://github.com/raysan5/raygui/blob/master/src/raygui.h) files in zig
+2. Build tools to compile raylib from source with simple zon dependency.
 
 - Raylib version `5.0`
 - Raygui version `4.0`
 - Zig version`0.12.0`
 
-At first, I wanted to learn how the zig build system worked and make a game.
-But I took too much time, and now it's a tool to compile raylib directly from source with zig package manager and build
-system.
 
 # TLDR
 
