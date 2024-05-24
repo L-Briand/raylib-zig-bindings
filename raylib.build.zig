@@ -184,7 +184,7 @@ pub const RaylibSetup = struct {
 
         // On macos rglfw.c include Objective-C files.
         try self.flags.append("-ObjC");
-        const cRglfw = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "rlgfw.c" });
+        const cRglfw = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "rglfw.c" });
         step.root_module.addCSourceFile(.{
             .file = .{ .path = cRglfw },
             .flags = self.flags.items,
