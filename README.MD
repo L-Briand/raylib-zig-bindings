@@ -11,7 +11,6 @@
 - Raygui version `4.0`
 - Zig version`0.12.0`
 
-
 # TLDR
 
 [Sample project here](https://github.com/L-Briand/raylib-zig-bindings-sample) using what's described below

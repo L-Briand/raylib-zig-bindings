@@ -159,8 +159,12 @@ pub const RaylibSetup = struct {
     // Update `step` to build for windows.
     pub fn linkWindows(
         self: *RaylibSetup,
+        b: *std.Build,
         step: *std.Build.Step.Compile,
     ) !void {
+        const glfwInclude = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "external", "glfw", "include" });
+        step.addIncludePath(.{ .path = glfwInclude });
+
         try self.files.append("rglfw.c");
         step.linkSystemLibrary("winmm");
         step.linkSystemLibrary("gdi32");
@@ -175,6 +179,9 @@ pub const RaylibSetup = struct {
         b: *std.Build,
         step: *std.Build.Step.Compile,
     ) !void {
+        const glfwInclude = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "external", "glfw", "include" });
+        step.addIncludePath(.{ .path = glfwInclude });
+
         // On macos rglfw.c include Objective-C files.
         try self.flags.append("-ObjC");
         const cRglfw = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "rlgfw.c" });
