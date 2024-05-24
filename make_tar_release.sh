@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [ -f "release.tar.gz" ] ; then rm "release.tar.gz"; fi
+
 FILES=(
   "bindings/bindings.zig"
   "bindings/raylib.zig"
@@ -12,4 +14,4 @@ FILES=(
   "LICENSE"
 )
 
-tar -czvf release.tar.gz ${FILES[@]}
+tar -czf release.tar.gz ${FILES[@]}
