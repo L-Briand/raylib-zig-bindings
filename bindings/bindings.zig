@@ -1,0 +1,65 @@
+pub const raylib = @import("raylib.zig");
+pub const rcamera = @import("rcamera.zig");
+pub const rlgl = @import("rlgl.zig");
+pub const raygui = @import("raygui.zig");
+
+pub const rayall = struct {
+    usingnamespace raylib;
+    usingnamespace raylib.ConfigFlags;
+    usingnamespace raylib.TraceLogLevel;
+    usingnamespace raylib.KeyboardKey;
+    usingnamespace raylib.MouseButton;
+    usingnamespace raylib.MouseCursor;
+    usingnamespace raylib.GamepadButton;
+    usingnamespace raylib.GamepadAxis;
+    usingnamespace raylib.MaterialMapIndex;
+    usingnamespace raylib.ShaderLocationIndex;
+    usingnamespace raylib.ShaderUniformDataType;
+    usingnamespace raylib.ShaderAttributeDataType;
+    usingnamespace raylib.PixelFormat;
+    usingnamespace raylib.TextureFilter;
+    usingnamespace raylib.TextureWrap;
+    usingnamespace raylib.CubemapLayout;
+    usingnamespace raylib.FontType;
+    usingnamespace raylib.BlendMode;
+    usingnamespace raylib.Gesture;
+    usingnamespace raylib.CameraMode;
+    usingnamespace raylib.CameraProjection;
+    usingnamespace raylib.NPatchLayout;
+
+    usingnamespace rcamera;
+
+    usingnamespace rlgl;
+    usingnamespace rlgl.rlGlVersion;
+    usingnamespace rlgl.rlTraceLogLevel;
+    usingnamespace rlgl.rlPixelFormat;
+    usingnamespace rlgl.rlTextureFilter;
+    usingnamespace rlgl.rlBlendMode;
+    usingnamespace rlgl.rlShaderLocationIndex;
+    usingnamespace rlgl.rlShaderUniformDataType;
+    usingnamespace rlgl.rlShaderAttributeDataType;
+    usingnamespace rlgl.rlFramebufferAttachType;
+    usingnamespace rlgl.rlFramebufferAttachTextureType;
+    usingnamespace rlgl.rlCullMode;
+
+    usingnamespace raygui;
+    usingnamespace raygui.GuiState;
+    usingnamespace raygui.GuiTextAlignment;
+    usingnamespace raygui.GuiTextAlignmentVertical;
+    usingnamespace raygui.GuiTextWrapMode;
+    usingnamespace raygui.GuiControl;
+    usingnamespace raygui.GuiControlProperty;
+    usingnamespace raygui.GuiDefaultProperty;
+    usingnamespace raygui.GuiToggleProperty;
+    usingnamespace raygui.GuiSliderProperty;
+    usingnamespace raygui.GuiProgressBarProperty;
+    usingnamespace raygui.GuiScrollBarProperty;
+    usingnamespace raygui.GuiCheckBoxProperty;
+    usingnamespace raygui.GuiComboBoxProperty;
+    usingnamespace raygui.GuiDropdownBoxProperty;
+    usingnamespace raygui.GuiTextBoxProperty;
+    usingnamespace raygui.GuiSpinnerProperty;
+    usingnamespace raygui.GuiListViewProperty;
+    usingnamespace raygui.GuiColorPickerProperty;
+    usingnamespace raygui.GuiIconName;
+};

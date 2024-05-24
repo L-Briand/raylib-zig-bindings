@@ -1,0 +1,12 @@
+.{
+    .name = "raylib-zig-bindings",
+    .version = "5.0.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "raylib.build.zig",
+        "LICENSE",
+        "bindings",
+        "build",
+    },
+}
