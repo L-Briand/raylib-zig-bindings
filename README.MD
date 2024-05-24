@@ -33,8 +33,8 @@ Create a `build.zig.zon` file and use this project as dependency.
 
     .dependencies = .{
         .@"raylib-zig-bindings" = .{
-            .url = "https://github.com/L-Briand/raylib-zig-bindings/releases/download/0.0.1/release.tar.gz",
-            .hash = "1220aea55046536f9d140db95ab07ce0ff8e69927aca1e15250dc7ba7fd1017ac078",
+            .url = "https://github.com/L-Briand/raylib-zig-bindings/releases/download/0.0.2/release.tar.gz",
+            .hash = "1220e5012e26ad92010de9b080bd40a77ba02b4d46282da28876891d595cb9d173c9",
         }
     },
 
