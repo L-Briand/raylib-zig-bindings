@@ -85,7 +85,7 @@ pub fn build(b: *std.Build) !void {
 
     // Build specific for platform.
     switch (target.result.os.tag) {
-    .windows => try setup.linkWindows(exe),
+    .windows => try setup.linkWindows(b, exe),
     .macos => try setup.linkMacos(b, exe),
     .linux => try setup.linkLinux(b, exe, .{ .platform = .DESKTOP, .backend = .X11 }),
     else => @panic("Unsupported os"),
