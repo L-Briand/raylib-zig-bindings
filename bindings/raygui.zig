@@ -10,14 +10,14 @@ const options = @import("raygui_options");
 // NOTE: Some types are required for RAYGUI_STANDALONE usage
 //----------------------------------------------------------------------------------
 
-pub const Vector2 = @import("raylib.zig").Vector2;
-pub const Vector3 = @import("raylib.zig").Vector3;
-pub const Color = @import("raylib.zig").Color;
-pub const Rectangle = @import("raylib.zig").Rectangle;
-pub const Texture2D = @import("raylib.zig").Texture2D;
-pub const Image = @import("raylib.zig").Image;
-pub const GlyphInfo = @import("raylib.zig").GlyphInfo;
-pub const Font = @import("raylib.zig").Font;
+const Vector2 = @import("raylib.zig").Vector2;
+const Vector3 = @import("raylib.zig").Vector3;
+const Color = @import("raylib.zig").Color;
+const Rectangle = @import("raylib.zig").Rectangle;
+const Texture2D = @import("raylib.zig").Texture2D;
+const Image = @import("raylib.zig").Image;
+const GlyphInfo = @import("raylib.zig").GlyphInfo;
+const Font = @import("raylib.zig").Font;
 
 // Style property
 // NOTE: Used when exporting style as code for convenience
@@ -38,11 +38,11 @@ pub const GuiState = enum(c_int) {
     STATE_PRESSED,
     STATE_DISABLED,
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -53,11 +53,11 @@ pub const GuiTextAlignment = enum(c_int) {
     TEXT_ALIGN_CENTER,
     TEXT_ALIGN_RIGHT,
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -69,11 +69,11 @@ pub const GuiTextAlignmentVertical = enum(c_int) {
     TEXT_ALIGN_MIDDLE,
     TEXT_ALIGN_BOTTOM,
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -85,11 +85,11 @@ pub const GuiTextWrapMode = enum(c_int) {
     TEXT_WRAP_CHAR,
     TEXT_WRAP_WORD,
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -116,11 +116,11 @@ pub const GuiControl = enum(c_int) {
     SCROLLBAR,
     STATUSBAR,
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -148,11 +148,11 @@ pub const GuiControlProperty = enum(c_int) {
     TEXT_ALIGNMENT, // Control text horizontal alignment inside control text bound (after border and padding)
     //TEXT_WRAP_MODE              // Control text wrap-mode inside text bounds -> GLOBAL for all controls
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -179,11 +179,11 @@ pub const GuiDefaultProperty = enum(c_int) {
     //TEXT_DECORATION             // Text decoration: 0-None, 1-Underline, 2-Line-through, 3-Overline
     //TEXT_DECORATION_THICK       // Text decoration line thikness
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -196,11 +196,11 @@ pub const GuiDefaultProperty = enum(c_int) {
 pub const GuiToggleProperty = enum(c_int) {
     GROUP_PADDING = 16, // ToggleGroup separation between toggles
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -210,11 +210,11 @@ pub const GuiSliderProperty = enum(c_int) {
     SLIDER_WIDTH = 16, // Slider size of internal bar
     SLIDER_PADDING, // Slider/SliderBar internal bar padding
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -223,11 +223,11 @@ pub const GuiSliderProperty = enum(c_int) {
 pub const GuiProgressBarProperty = enum(c_int) {
     PROGRESS_PADDING = 16, // ProgressBar internal padding
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -241,11 +241,11 @@ pub const GuiScrollBarProperty = enum(c_int) {
     SCROLL_PADDING, // ScrollBar scroll padding from arrows
     SCROLL_SPEED, // ScrollBar scrolling speed
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -254,11 +254,11 @@ pub const GuiScrollBarProperty = enum(c_int) {
 pub const GuiCheckBoxProperty = enum(c_int) {
     CHECK_PADDING = 16, // CheckBox internal check padding
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -268,11 +268,11 @@ pub const GuiComboBoxProperty = enum(c_int) {
     COMBO_BUTTON_WIDTH = 16, // ComboBox right button width
     COMBO_BUTTON_SPACING, // ComboBox button separation
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -282,11 +282,11 @@ pub const GuiDropdownBoxProperty = enum(c_int) {
     ARROW_PADDING = 16, // DropdownBox arrow separation from border and items
     DROPDOWN_ITEMS_SPACING, // DropdownBox items separation
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -295,11 +295,11 @@ pub const GuiDropdownBoxProperty = enum(c_int) {
 pub const GuiTextBoxProperty = enum(c_int) {
     TEXT_READONLY = 16, // TextBox in read-only mode: 0-text editable, 1-text no-editable
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -309,11 +309,11 @@ pub const GuiSpinnerProperty = enum(c_int) {
     SPIN_BUTTON_WIDTH = 16, // Spinner left/right buttons width
     SPIN_BUTTON_SPACING, // Spinner buttons separation
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -325,11 +325,11 @@ pub const GuiListViewProperty = enum(c_int) {
     SCROLLBAR_WIDTH, // ListView scrollbar size (usually width)
     SCROLLBAR_SIDE, // ListView scrollbar side (0-SCROLLBAR_LEFT_SIDE, 1-SCROLLBAR_RIGHT_SIDE)
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -342,11 +342,11 @@ pub const GuiColorPickerProperty = enum(c_int) {
     HUEBAR_SELECTOR_HEIGHT, // ColorPicker right hue bar selector height
     HUEBAR_SELECTOR_OVERFLOW, // ColorPicker right hue bar selector overflow
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };

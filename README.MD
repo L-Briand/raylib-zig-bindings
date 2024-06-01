@@ -79,19 +79,23 @@ pub fn build(b: *std.Build) !void {
     try setup.addRayguiToRaylibSrc(b, .{ .cwd_relative = "raygui/src/raygui.h" });
 
     // If you have some raylib's C #define requirements that need to be at build time. 
-    // You can set them here. 
-    setup.setRayguiOptions(b, exe, .{});
-    setup.setRCameraOptions(b, exe, .{});
-    setup.setRlglOptions(b, exe, .{});
-    // Note: Some target needs specific opengl api version (RlglOption). 
-    // For example linux .platform = DRM requires opengl_es2.
+    // You can set them here:
+    // setup.setRayguiOptions(b, exe, .{});
+    // setup.setRCameraOptions(b, exe, .{});
+    // setup.setRlglOptions(b, exe, .{});
+
+    // Note: 
+    // Some target needs specific opengl api version (RlglOption). 
+    // For example linux .platform = DRM requires opengl_es2
+    // If you do not uncomment the setup.setRlglOptions above.
+    // It will add it automatically when linking.
 
     // Build specific for platform.
     switch (target.result.os.tag) {
-    .windows => try setup.linkWindows(b, exe),
-    .macos => try setup.linkMacos(b, exe),
-    .linux => try setup.linkLinux(b, exe, .{ .platform = .DESKTOP, .backend = .X11 }),
-    else => @panic("Unsupported os"),
+        .windows => try setup.linkWindows(b, exe),
+        .macos => try setup.linkMacos(b, exe),
+        .linux => try setup.linkLinux(b, exe, .{ .platform = .DESKTOP, .backend = .X11 }),
+        else => @panic("Unsupported os"),
     }
 
     // Add everything to the exe.
@@ -120,36 +124,48 @@ const rl = rlzb.raylib;
 const rg = rlzb.raygui;
 
 pub fn main() !void {
-    rl.InitWindow(400, 200, "raygui - controls test suite");
-    defer rl.CloseWindow();
-    rl.SetTargetFPS(60);
+   rl.InitWindow(400, 200, "raygui - controls test suite");
+   defer rl.CloseWindow();
+   rl.SetTargetFPS(60);
 
-    var showMessageBox = false;
+   var showMessageBox = false;
 
-    while (!rl.WindowShouldClose()) {
-        rl.BeginDrawing();
-        const style = rg.GuiGetStyle(
-                rg.GuiControl.DEFAULT.toValue(),
-                rg.GuiDefaultProperty.BACKGROUND_COLOR.toValue(),
-        );
-        rl.ClearBackground(rl.GetColor(@bitCast(style)));
+   while (!rl.WindowShouldClose()) {
+      rl.BeginDrawing();
+      const style = rg.GuiGetStyle(
+            rg.GuiControl.DEFAULT.toCInt(),
+            rg.GuiDefaultProperty.BACKGROUND_COLOR.toCInt(),
+      );
+      rl.ClearBackground(rl.GetColor(@bitCast(style)));
 
-        if (rg.GuiButton(rl.Rectangle.init(24, 24, 120, 30), "#191#Show Message") > 0)
-        showMessageBox = true;
+      if (rg.GuiButton(rl.Rectangle.init(24, 24, 120, 30), "#191#Show Message") > 0)
+         showMessageBox = true;
 
-        if (showMessageBox) {
-            const bounds = rl.Rectangle.init(85, 70, 250, 100);
-            const result = rg.GuiMessageBox(bounds, "#191#Message Box", "Hi! This is a message!", "Nice;Cool");
-            if (result >= 0) showMessageBox = false;
-        }
+      if (showMessageBox) {
+         const bounds = rl.Rectangle.init(85, 70, 250, 100);
+         const result = rg.GuiMessageBox(bounds, "#191#Message Box", "Hi! This is a message!", "Nice;Cool");
+         if (result >= 0) showMessageBox = false;
+      }
 
-        rl.EndDrawing();
-    }
+      rl.EndDrawing();
+   }
 
-    return;
+   return;
 }
 ```
 
 Then run `zig build run`. You should see a window popping up.
 
 ![Raygui window](./raygui_screenshot.png)
+
+If you don't want to switch between raylib and raygui. You can create a struct with wanted `usingnamespace` inside.
+
+```zig 
+const rl = struct {
+    const rlzb = @import("rlzb");
+    usingnamespace rlzb.raylib;
+    usingnamespace rlzb.rlgl;
+    usingnamespace rlzb.rcamera;
+    usingnamespace rlzb.raygui;
+};
+```

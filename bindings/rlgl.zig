@@ -210,11 +210,11 @@ pub const rlGlVersion = enum(c_int) {
     RL_OPENGL_ES_20, // OpenGL ES 2.0 (GLSL 100)
     RL_OPENGL_ES_30, // OpenGL ES 3.0 (GLSL 300 es)
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -231,11 +231,11 @@ pub const rlTraceLogLevel = enum(c_int) {
     RL_LOG_FATAL, // Fatal logging, used to abort program: exit(EXIT_FAILURE)
     RL_LOG_NONE, // Disable logging
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -268,11 +268,11 @@ pub const rlPixelFormat = enum(c_int) {
     RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA, // 8 bpp
     RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA, // 2 bpp
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -288,11 +288,11 @@ pub const rlTextureFilter = enum(c_int) {
     RL_TEXTURE_FILTER_ANISOTROPIC_8X, // Anisotropic filtering 8x
     RL_TEXTURE_FILTER_ANISOTROPIC_16X, // Anisotropic filtering 16x
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -308,11 +308,11 @@ pub const rlBlendMode = enum(c_int) {
     RL_BLEND_CUSTOM, // Blend textures using custom src/dst factors (use rlSetBlendFactors())
     RL_BLEND_CUSTOM_SEPARATE, // Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -346,11 +346,11 @@ pub const rlShaderLocationIndex = enum(c_int) {
     RL_SHADER_LOC_MAP_PREFILTER, // Shader location: samplerCube texture: prefilter
     RL_SHADER_LOC_MAP_BRDF, // Shader location: sampler2d texture: brdf
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -370,11 +370,11 @@ pub const rlShaderUniformDataType = enum(c_int) {
     RL_SHADER_UNIFORM_IVEC4, // Shader uniform type: ivec4 (4 int)
     RL_SHADER_UNIFORM_SAMPLER2D, // Shader uniform type: sampler2d
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -386,11 +386,11 @@ pub const rlShaderAttributeDataType = enum(c_int) {
     RL_SHADER_ATTRIB_VEC3, // Shader attribute type: vec3 (3 float)
     RL_SHADER_ATTRIB_VEC4, // Shader attribute type: vec4 (4 float)
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -409,11 +409,11 @@ pub const rlFramebufferAttachType = enum(c_int) {
     RL_ATTACHMENT_DEPTH = 100, // Framebuffer attachment type: depth
     RL_ATTACHMENT_STENCIL = 200, // Framebuffer attachment type: stencil
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
@@ -429,11 +429,11 @@ pub const rlFramebufferAttachTextureType = enum(c_int) {
     RL_ATTACHMENT_TEXTURE2D = 100, // Framebuffer texture attachment type: texture2d
     RL_ATTACHMENT_RENDERBUFFER = 200, // Framebuffer texture attachment type: renderbuffer
 
-    pub fn fromValue(value: c_int) !@This() {
+    pub fn fromCInt(value: c_int) !@This() {
         return try std.meta.intToEnum(@This(), value);
     }
 
-    pub fn toValue(self: @This()) c_int {
+    pub fn toCInt(self: @This()) c_int {
         return @intFromEnum(self);
     }
 };
