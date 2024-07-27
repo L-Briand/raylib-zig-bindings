@@ -9,7 +9,7 @@
 
 - Raylib version `5.0`
 - Raygui version `4.0`
-- Zig version`0.12.0`
+- Zig version`0.13.0`
 
 # TLDR
 
@@ -33,8 +33,8 @@ Create a `build.zig.zon` file and use this project as dependency.
 
     .dependencies = .{
         .@"raylib-zig-bindings" = .{
-            .url = "https://github.com/L-Briand/raylib-zig-bindings/releases/download/1.0.0/release.tar.gz",
-            .hash = "12204794808e9d42878238af89afadb037e12351aa84f15ca9addad3ce12de0a610a",
+            .url = "https://github.com/L-Briand/raylib-zig-bindings/releases/download/1.1.0/release.tar.gz",
+            .hash = "122096dfc8994542d786f21d12806a9bb9bb388d3f731aa03b0cacda0f5c48de2b5c",
         }
     },
 

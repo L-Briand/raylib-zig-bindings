@@ -1,4 +1,4 @@
 .idea
-zig-cache
+.zig-cache
 zig-out
 release.tar.gz

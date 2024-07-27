@@ -163,7 +163,7 @@ pub const RaylibSetup = struct {
         step: *std.Build.Step.Compile,
     ) !void {
         const glfwInclude = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "external", "glfw", "include" });
-        step.addIncludePath(.{ .path = glfwInclude });
+        step.addIncludePath(.{ .cwd_relative = glfwInclude });
 
         try self.files.append("rglfw.c");
         step.linkSystemLibrary("winmm");
@@ -180,13 +180,13 @@ pub const RaylibSetup = struct {
         step: *std.Build.Step.Compile,
     ) !void {
         const glfwInclude = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "external", "glfw", "include" });
-        step.addIncludePath(.{ .path = glfwInclude });
+        step.addIncludePath(.{ .cwd_relative = glfwInclude });
 
         // On macos rglfw.c include Objective-C files.
         try self.flags.append("-ObjC");
         const cRglfw = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "rglfw.c" });
         step.root_module.addCSourceFile(.{
-            .file = .{ .path = cRglfw },
+            .file = .{ .cwd_relative = cRglfw },
             .flags = self.flags.items,
         });
         _ = self.flags.pop();
@@ -219,9 +219,9 @@ pub const RaylibSetup = struct {
                 step.linkSystemLibrary("m");
 
                 const glfwInclude = b.pathJoin(&[_][]const u8{ self.raylibSrcPath.getPath(b), "external", "glfw", "include" });
-                step.addIncludePath(.{ .path = glfwInclude });
-                step.addIncludePath(.{ .path = "/usr/include" });
-                step.addLibraryPath(.{ .path = "/usr/lib" });
+                step.addIncludePath(.{ .cwd_relative = glfwInclude });
+                step.addIncludePath(.{ .cwd_relative = "/usr/include" });
+                step.addLibraryPath(.{ .cwd_relative = "/usr/lib" });
 
                 switch (options.backend) {
                     .X11 => {
@@ -255,7 +255,7 @@ pub const RaylibSetup = struct {
                 step.linkSystemLibrary("rt");
                 step.linkSystemLibrary("m");
                 step.linkSystemLibrary("dl");
-                step.addIncludePath(.{ .path = "/usr/include/libdrm" });
+                step.addIncludePath(.{ .cwd_relative = "/usr/include/libdrm" });
 
                 step.defineCMacro("PLATFORM_DRM", null);
                 step.defineCMacro("EGL_NO_X11", null);
@@ -291,11 +291,11 @@ pub const RaylibSetup = struct {
         const privateCode = basename ++ "-code.h";
 
         const client_step = b.addSystemCommand(&.{ "wayland-scanner", "client-header" });
-        client_step.addFileArg(.{ .path = protocolDir });
+        client_step.addFileArg(.{ .cwd_relative = protocolDir });
         step.addIncludePath(client_step.addOutputFileArg(clientHeader).dirname());
 
         const private_step = b.addSystemCommand(&.{ "wayland-scanner", "private-code" });
-        private_step.addFileArg(.{ .path = protocolDir });
+        private_step.addFileArg(.{ .cwd_relative = protocolDir });
         step.addIncludePath(private_step.addOutputFileArg(privateCode).dirname());
 
         step.step.dependOn(&client_step.step);
