@@ -15,6 +15,10 @@
 
 [Sample project here](https://github.com/L-Briand/raylib-zig-bindings-sample) using what's described below
 
+# Projects using this
+
+- https://github.com/Srekel/tides-of-tabletop
+
 # Setting up a project
 
 You'll need raylib and raygui sources with the correct version:
